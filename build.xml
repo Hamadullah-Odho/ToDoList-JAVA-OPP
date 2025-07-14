@@ -1,0 +1,35 @@
+
+---
+
+## 🔧 `build.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ToDoList" basedir="." default="run">
+    
+    <!-- Set properties -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="main.class" value="ToDoList"/>
+
+    <!-- Create build directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <!-- Compile Java code -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+    </target>
+
+    <!-- Run the application -->
+    <target name="run" depends="compile">
+        <java classname="${main.class}" fork="true" classpath="${build.dir}"/>
+    </target>
+
+    <!-- Clean build files -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>
