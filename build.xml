@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ToDoList" basedir="." default="run">
+<project name="ToDoList" default="run" basedir=".">
     
+    <!-- Set folder paths -->
     <property name="src.dir" value="src"/>
     <property name="build.dir" value="build"/>
     <property name="main.class" value="ToDoList"/>
 
+    <!-- Create build directory -->
     <target name="init">
         <mkdir dir="${build.dir}"/>
     </target>
 
+    <!-- Compile all .java files -->
     <target name="compile" depends="init">
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}"/>
     </target>
 
+    <!-- Run the main class -->
     <target name="run" depends="compile">
         <java classname="${main.class}" fork="true" classpath="${build.dir}"/>
     </target>
 
+    <!-- Clean compiled .class files -->
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
